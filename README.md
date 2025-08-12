@@ -62,7 +62,54 @@ o After finishing, click File > Exit to close Eclipse IDE.
 
 
 ## PROGRAM:
-
+ (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
+diff --git a//dev/null b/MatrixAddition.java
+index 0000000000000000000000000000000000000000..343385ba874d31fdddd69a0589742a3821896309 100644
+--- a//dev/null
++++ b/MatrixAddition.java
+@@ -0,0 +1,39 @@
++public class MatrixAddition {
++    public static void main(String[] args) {
++        int[][] a = {
++            {1, 2, 3},
++            {4, 5, 6}
++        };
++        int[][] b = {
++            {7, 8, 9},
++            {10, 11, 12}
++        };
++
++        int rows = a.length;
++        int cols = a[0].length;
++
++        int[][] sum = new int[rows][cols];
++
++        for (int i = 0; i < rows; i++) {
++            for (int j = 0; j < cols; j++) {
++                sum[i][j] = a[i][j] + b[i][j];
++            }
++        }
++
++        System.out.println("Matrix A:");
++        printMatrix(a);
++        System.out.println("Matrix B:");
++        printMatrix(b);
++        System.out.println("Sum of A and B:");
++        printMatrix(sum);
++    }
++
++    private static void printMatrix(int[][] matrix) {
++        for (int[] row : matrix) {
++            for (int value : row) {
++                System.out.print(value + " ");
++            }
++            System.out.println();
++        }
++    }
++}
+ 
+EOF
+)
 ## OUTPUT:
 
 ## RESULT:
